@@ -1,0 +1,30 @@
+{
+  "name": "webhook-catcher",
+  "version": "1.0.0",
+  "description": "Zero-dependency local webhook inspection server, debugger & real-time Web Studio with SSE live stream.",
+  "main": "src/core/index.js",
+  "bin": {
+    "webhook-catcher": "bin/webhook-catcher.js"
+  },
+  "scripts": {
+    "start": "node bin/webhook-catcher.js",
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "webhook",
+    "developer-tools",
+    "debug",
+    "http-server",
+    "server-sent-events",
+    "sse",
+    "stripe-webhook",
+    "github-webhook",
+    "zero-dependency",
+    "cli"
+  ],
+  "author": "Mahdyar Monfared",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
