@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebhookCatcher Studio | Real-Time Webhook Inspector</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-group">
+        <span class="logo-icon">🎣</span>
+        <div>
+          <h1>WebhookCatcher Studio</h1>
+          <p class="subtitle">Zero-dependency Real-Time Webhook Debugger & Replay Engine</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="sseBadge" class="badge badge-success">● LIVE STREAM ACTIVE</span>
+        <button id="clearBtn" class="btn btn-outline btn-sm">Clear History</button>
+        <span class="badge">Port 3016</span>
+      </div>
+    </header>
+
+    <div class="ingest-banner card">
+      <div class="ingest-info">
+        <span class="label">Ingest Webhook URL:</span>
+        <code id="ingestUrl">http://localhost:3016/hook/my-service</code>
+      </div>
+      <button id="copyUrlBtn" class="btn btn-secondary btn-sm">Copy Ingest URL</button>
+    </div>
+
+    <main class="studio-layout">
+      <!-- Left Panel: Incoming Events List -->
+      <section class="card events-panel">
+        <div class="panel-header">
+          <h2>Captured Webhooks</h2>
+          <span id="eventCount" class="count-badge">0</span>
+        </div>
+        <div id="eventsList" class="events-list">
+          <div class="empty-state">Waiting for incoming webhooks...<br><small>Send a POST/GET to <code>/hook/test</code></small></div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Webhook Detail Inspector -->
+      <section class="card detail-panel">
+        <div id="detailContainer" class="detail-container">
+          <div class="empty-detail">Select a webhook from the left panel to inspect headers and payload body.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Forward Modal -->
+  <div id="forwardModal" class="modal hidden">
+    <div class="modal-content card">
+      <h3>Forward / Replay Webhook</h3>
+      <form id="forwardForm">
+        <input type="hidden" id="forwardEventId">
+        <div class="form-group">
+          <label for="forwardTargetUrl">Target Destination URL</label>
+          <input type="url" id="forwardTargetUrl" placeholder="http://localhost:8080/api/webhooks" required>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="closeForwardModal" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-primary">Forward Webhook</button>
+        </div>
+      </form>
+      <div id="forwardResult" class="forward-result hidden"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
